@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Palavras</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            margin: auto;
+        }
+    </style>
 
+</head>
+<body>
+    <div class="container">
+            <label for="quantidadePalavras">Quantidade de palavras</label>
+            <input type="number" name="quantidadePalavras" id="quantidadePalavras" value="20">
+            <label for="frase">Texto</label>
+            <textarea name="frase" id="frase" cols="30" rows="10" onkeyup="contaPalavras()"></textarea>
+            <span>Palavras restantes</span>
+            <span id="quantidadeRestante">0</span>
+            <button onclick="copyWords()">Copiar texto</button>
+    </div>
+    <script>
+        var textoAnterior = '';
+        var quantidadeRestante = document.getElementById("quantidadeRestante");
+
+        function contaPalavras() {
+           
+            var texto = document.getElementById("frase");
+            var palavra = texto.value.split(' ');
+            var quantidadePalavra = palavra.length - 1;
+            var quantidadePalavras = document.getElementById("quantidadePalavras").value;
+            
+            console.log("palavra..:", palavra);
+            console.log("quantidadePalavras..:", quantidadePalavras);
+            console.log("quantidadePalavra..:", quantidadePalavra);
+
+            quantidadeRestante.textContent = (quantidadePalavras - quantidadePalavra);
+
+            console.log('quantidadePalavra..: ', quantidadePalavra);
+
+            if (quantidadePalavra >= quantidadePalavras) {
+                texto.value = textoAnterior;
+                return;
+            } else {
+                textoAnterior = texto.value;
+            }
+            console.log(palavra);
+        }
+
+        function copyWords() {
+            //seleciona todo o texto do elemento
+            document.getElementById("frase").select();
+            //executa o comando copy
+            //aqui é feito o ato de copiar para a area de trabalho com base na seleção
+            document.execCommand('copy');
+        }
+        //var quantidade = document.getElementById("quantidade");
+        
+    </script>
+</body>
+</html>
