@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Palavras</title>
+    <script data-ad-client="ca-pub-4698968557005948" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            margin: auto;
+        }
+
+        .itens {
+            margin-bottom: 15px;
+        }
+
+        .item {
+            flex-direction: row;
+        }
+
+        .frasePequena2 {
+            font-size: 0.7em;
+            font-style: italic;
+        }
+
+        label {
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input,
+        textarea {
+            border-radius: 5px;
+            margin: 0px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            height: 40px;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="itens">
+            <label for="nomeAutor">Ambientação</label>
+            <div class="item">
+                <input type="text" name="ambientacao" id="ambientacao">
+            </div>
+        </div>
+
+        <div class="itens">
+            <label for="nomeAutor">Autor</label>
+            <div class="item">
+                <input type="text" name="nomeAutor" id="nomeAutor">
+            </div>
+        </div>
+
+        <div class="itens">
+            <label for="qtdPalavrasAutor">Nome</label>
+            <div class="item">
+                <input type="text" name="nomeNpc" id="nomeNpc"
+                    onkeyup="contaPalavras('nomeNpc', 'qtdPalavrasNomeNpc', 'quantidadeRestanteNomeNpc')">
+                <input type="number" name="qtdPalavrasNomeNpc" id="qtdPalavrasNomeNpc" value="3" max="2" style="width: 35px" >
+            </div>
+            <label for="quantidadeRestanteNomeNpc" class="frasePequena2">Palavras restantes: </span>
+                <span id="quantidadeRestanteNomeNpc"></span>
+        </div>
+
+        <div class="itens">
+            <label for="ocupacaoNpc">Ocupação</label>
+            <div>
+                <input type="text" name="ocupacaoNpc" id="ocupacaoNpc"
+                    onkeyup="contaPalavras('ocupacaoNpc', 'qtdPalavrasOcupacaoNpc', 'quantidadeRestanteOcupacaoNpc')">
+                <input type="number" name="qtdPalavrasOcupacaoNpc" id="qtdPalavrasOcupacaoNpc" value="3" size="1" max="2" style="width: 35px" >
+            </div>
+            <label for="quantidadeRestanteOcupacaoNpc" class="frasePequena2">Palavras restantes: </span>
+                <span id="quantidadeRestanteOcupacaoNpc"></span>
+        </div>
+
+        <div class="itens">
+            <label for="personalidadeNpc">Personalidade</label>
+            <div>
+                <input type="text" name="personalidadeNpc" id="personalidadeNpc"
+                    onkeyup="contaPalavras('personalidadeNpc', 'qtdPalavrasPersonalidadeNpc', 'quantidadeRestantePersonalidadeNpc')">
+                <input type="number" name="qtdPalavrasPersonalidadeNpc" id="qtdPalavrasPersonalidadeNpc" value="3"
+                    size="1" max="2" style="width: 35px" >
+            </div>
+            <label for="quantidadeRestantePersonalidadeNpc" class="frasePequena2">Palavras restantes: </span>
+                <span id="quantidadeRestantePersonalidadeNpc"></span>
+        </div>
+
+        <div class="itens">
+            <label for="aparenciaNpc">Aparência</label>
+            <div>
+                <textarea name="aparenciaNpc" id="aparenciaNpc" cols="30" rows="3"
+                    onkeyup="contaPalavras('aparenciaNpc', 'qtdPalavrasAparenciaNpc', 'quantidadeRestanteAparenciaNpc')"></textarea>
+                <input type="number" name="qtdPalavrasAparenciaNpc" id="qtdPalavrasAparenciaNpc" value="20" size="1" max="2" style="width: 35px" >
+            </div>
+            <label for="quantidadeRestanteAparenciaNpc" class="frasePequena2">Palavras restantes: </span>
+                <span id="quantidadeRestanteAparenciaNpc"></span>
+        </div>
+        <div class="itens">
+            <label for="antecedenteNpc">Antecedente</label>
+            <div>
+                <textarea name="antecedenteNpc" id="antecedenteNpc" cols="30" rows="3"
+                    onkeyup="contaPalavras('antecedenteNpc', 'qtdPalavrasAntecedenteNpc', 'quantidadeRestanteAntecedenteNpc')"></textarea>
+                <input type="number" name="qtdPalavrasAntecedenteNpc" id="qtdPalavrasAntecedenteNpc" value="20"
+                    size="1" max="2" style="width: 35px" >
+            </div>
+            <label for="quantidadeRestanteAntecedenteNpc" class="frasePequena2">Palavras restantes: </span>
+                <span id="quantidadeRestanteAntecedenteNpc"></span>
+        </div>
+        <div class="itens">
+            <label for="motivacaoNpc">Motivação</label>
+            <div>
+                <textarea name="motivacaoNpc" id="motivacaoNpc" cols="30" rows="3"
+                    onkeyup="contaPalavras('motivacaoNpc', 'qtdPalavrasMotivacaoNpc', 'quantidadeRestanteMotivacaoNpc')"></textarea>
+                <input type="number" name="qtdPalavrasMotivacaoNpc" id="qtdPalavrasMotivacaoNpc" value="20" size="1" max="2" style="width: 35px" >
+            </div>
+            <label for="quantidadeRestanteMotivacaoNpc" class="frasePequena2">Palavras restantes: </span>
+                <span id="quantidadeRestanteMotivacaoNpc"></span>
+        </div>
+        <button onclick="copyWords()">Copiar texto</button>
+
+        <div >
+            <pre style="display: none;" id="textoCompleto" ></pre>
+            <textarea name="textareaa" id="textareaa" cols="30" rows="3" ></textarea>
+        </div>
+    </div>
+    <script>
+        var textoAnterior = '';
+
+
+
+        function template(ambientacao, autor, nome, ocupacao, personalidade, aparencia, antecedente, motivacao) {
+            return `*NPC Extraordinário* \n\n`
+                + `*🔴 Vale 20 XP 🔴* \n\n`
+                + `*Licença: CC BY-NC-SA* \n\n`
+                + `*Ambientação: ${ambientacao}* \n\n`
+                + `*Autor:* ${autor}\n\n`
+                + `*Nome:* \n\n`
+                + `- ${nome} \n\n`
+                + `*Ocupação:* \n\n`
+                + `- ${ocupacao}\n\n`
+                + `*Personalidade:* \n\n`
+                + `- ${personalidade} \n\n`
+                + `*Aparência:* \n\n`
+                + `- ${aparencia} \n\n`
+                + `*Antecedente:* \n\n`
+                + `- ${antecedente} \n\n`
+                + `*Motivação:* \n\n`
+                + `- ${motivacao} \n\n`;
+
+
+        }
+        //function contaPalavras(texto, quantidadePalavras) {
+        function contaPalavras(texto, qtdPalavras, quantidadeRestante) {
+
+            var quantidadeRestante = document.getElementById(quantidadeRestante);
+
+            var texto = document.getElementById(texto);
+            var palavra = texto.value.split(' ');
+            var quantidadePalavra = palavra.length - 1;
+            var quantidadePalavras = document.getElementById(qtdPalavras).value;
+
+            quantidadeRestante.textContent = (quantidadePalavras - quantidadePalavra);
+
+            if (quantidadePalavra >= quantidadePalavras) {
+                texto.value = textoAnterior;
+                return;
+            } else {
+                textoAnterior = texto.value;
+            }
+
+            // document.getElementById("textareaa").value =  template(nomeAutor, nomeNpc, ocupacaoNpc, personalidadeNpc, aparenciaNpc, antecedenteNpc, motivacaoNpc);
+            
+            document.getElementById('textoCompleto').textContent = setTemplate();
+            
+        }
+        
+        function setTemplate() {
+            // autor, nome, ocupacao, personalidade, aparencia, antecedente, motivacao
+            var ambientacao = document.getElementById('ambientacao').value;
+            var nomeAutor = document.getElementById('nomeAutor').value;
+            var nomeNpc = document.getElementById('nomeNpc').value;
+            var ocupacaoNpc = document.getElementById('ocupacaoNpc').value;
+            var personalidadeNpc = document.getElementById('personalidadeNpc').value;
+            var aparenciaNpc = document.getElementById('aparenciaNpc').value;
+            var antecedenteNpc = document.getElementById('antecedenteNpc').value;
+            var motivacaoNpc = document.getElementById('motivacaoNpc').value;
+            
+            document.getElementById("textareaa").value =  template(ambientacao, nomeAutor, nomeNpc, ocupacaoNpc, personalidadeNpc, aparenciaNpc, antecedenteNpc, motivacaoNpc);
+            return template(ambientacao, nomeAutor, nomeNpc, ocupacaoNpc, personalidadeNpc, aparenciaNpc, antecedenteNpc, motivacaoNpc);
+
+        }
+        function copyWords() {
+            document.getElementById("textareaa").select();
+            document.execCommand('copy');
+        }
+
+
+    </script>
+</body>
+
+</html>
